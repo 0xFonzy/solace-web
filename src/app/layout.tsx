@@ -26,8 +26,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${lato.variable} ${merriweather.variable} font-lato`}>
+    <html lang="en" className="dark">
+      <body
+        className={`${lato.variable} ${merriweather.variable} font-lato text-white min-h-screen`}
+      >
         <HeroUIProvider>{children}</HeroUIProvider>
       </body>
     </html>

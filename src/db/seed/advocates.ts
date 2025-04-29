@@ -2,7 +2,7 @@ import { Advocate } from "@/app/types/advocate";
 import db from "..";
 import { advocates } from "../schema";
 
-const specialties: Advocate["specialties"] = [
+export const specialties: Advocate["specialties"] = [
   "Bipolar",
   "LGBTQ",
   "Medication/Prescribing",
