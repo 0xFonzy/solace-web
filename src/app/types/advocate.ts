@@ -10,11 +10,11 @@ export type Advocate = {
   imageUrl: string;
 };
 
-export type AdvocateSearch = {
+export type AdvocateSearchFilter = {
   name: string;
   city: string;
   degree: string;
-  specialties: string[];
+  specialty: string;
 };
 
 export type AdvocateSearchRequest = {
