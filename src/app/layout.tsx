@@ -1,12 +1,23 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Merriweather, Lato } from "next/font/google";
 import "./globals.css";
+import { HeroUIProvider } from "@heroui/react";
 
-const inter = Inter({ subsets: ["latin"] });
+const merriweather = Merriweather({
+  weight: ["300", "400", "700", "900"],
+  subsets: ["latin"],
+  variable: "--font-merriweather",
+});
+
+const lato = Lato({
+  weight: ["100", "300", "400", "700", "900"],
+  subsets: ["latin"],
+  variable: "--font-lato",
+});
 
 export const metadata: Metadata = {
-  title: "Solace Candidate Assignment",
-  description: "Show us what you got",
+  title: "Solace Advocates",
+  description: "Find the right advocate for you",
 };
 
 export default function RootLayout({
@@ -16,7 +27,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${lato.variable} ${merriweather.variable} font-lato`}>
+        <HeroUIProvider>{children}</HeroUIProvider>
+      </body>
     </html>
   );
 }
