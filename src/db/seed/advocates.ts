@@ -1,7 +1,8 @@
+import { Advocate } from "@/app/types/advocate";
 import db from "..";
 import { advocates } from "../schema";
 
-const specialties = [
+const specialties: Advocate["specialties"] = [
   "Bipolar",
   "LGBTQ",
   "Medication/Prescribing",
@@ -37,141 +38,186 @@ const randomSpecialty = () => {
   return [random1, random2];
 };
 
-const advocateData = [
+const advocateData: Advocate[] = [
   {
+    id: 1,
     firstName: "John",
     lastName: "Doe",
     city: "New York",
     degree: "MD",
     specialties: specialties.slice(...randomSpecialty()),
     yearsOfExperience: 10,
-    phoneNumber: 5551234567,
+    phoneNumber: "5551234567",
+    imageUrl:
+      "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
   },
   {
+    id: 2,
     firstName: "Jane",
     lastName: "Smith",
     city: "Los Angeles",
     degree: "PhD",
     specialties: specialties.slice(...randomSpecialty()),
     yearsOfExperience: 8,
-    phoneNumber: 5559876543,
+    phoneNumber: "5559876543",
+    imageUrl:
+      "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
   },
   {
+    id: 3,
     firstName: "Alice",
     lastName: "Johnson",
     city: "Chicago",
     degree: "MSW",
     specialties: specialties.slice(...randomSpecialty()),
     yearsOfExperience: 5,
-    phoneNumber: 5554567890,
+    phoneNumber: "5554567890",
+    imageUrl:
+      "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
   },
   {
+    id: 4,
     firstName: "Michael",
     lastName: "Brown",
     city: "Houston",
     degree: "MD",
     specialties: specialties.slice(...randomSpecialty()),
     yearsOfExperience: 12,
-    phoneNumber: 5556543210,
+    phoneNumber: "5556543210",
+    imageUrl:
+      "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
   },
   {
+    id: 5,
     firstName: "Emily",
     lastName: "Davis",
     city: "Phoenix",
     degree: "PhD",
     specialties: specialties.slice(...randomSpecialty()),
     yearsOfExperience: 7,
-    phoneNumber: 5553210987,
+    phoneNumber: "5553210987",
+    imageUrl:
+      "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
   },
   {
+    id: 6,
     firstName: "Chris",
     lastName: "Martinez",
     city: "Philadelphia",
     degree: "MSW",
     specialties: specialties.slice(...randomSpecialty()),
     yearsOfExperience: 9,
-    phoneNumber: 5557890123,
+    phoneNumber: "5557890123",
+    imageUrl:
+      "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
   },
   {
+    id: 7,
     firstName: "Jessica",
     lastName: "Taylor",
     city: "San Antonio",
     degree: "MD",
     specialties: specialties.slice(...randomSpecialty()),
     yearsOfExperience: 11,
-    phoneNumber: 5554561234,
+    phoneNumber: "5554561234",
+    imageUrl:
+      "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
   },
   {
+    id: 8,
     firstName: "David",
     lastName: "Harris",
     city: "San Diego",
     degree: "PhD",
     specialties: specialties.slice(...randomSpecialty()),
     yearsOfExperience: 6,
-    phoneNumber: 5557896543,
+    phoneNumber: "5557896543",
+    imageUrl:
+      "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
   },
   {
+    id: 9,
     firstName: "Laura",
     lastName: "Clark",
     city: "Dallas",
     degree: "MSW",
     specialties: specialties.slice(...randomSpecialty()),
     yearsOfExperience: 4,
-    phoneNumber: 5550123456,
+    phoneNumber: "5550123456",
+    imageUrl:
+      "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
   },
   {
+    id: 10,
     firstName: "Daniel",
     lastName: "Lewis",
     city: "San Jose",
     degree: "MD",
     specialties: specialties.slice(...randomSpecialty()),
     yearsOfExperience: 13,
-    phoneNumber: 5553217654,
+    phoneNumber: "5553217654",
+    imageUrl:
+      "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
   },
   {
+    id: 11,
     firstName: "Sarah",
     lastName: "Lee",
     city: "Austin",
     degree: "PhD",
     specialties: specialties.slice(...randomSpecialty()),
     yearsOfExperience: 10,
-    phoneNumber: 5551238765,
+    phoneNumber: "5551238765",
+    imageUrl:
+      "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
   },
   {
+    id: 12,
     firstName: "James",
     lastName: "King",
     city: "Jacksonville",
     degree: "MSW",
     specialties: specialties.slice(...randomSpecialty()),
     yearsOfExperience: 5,
-    phoneNumber: 5556540987,
+    phoneNumber: "5556540987",
+    imageUrl:
+      "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
   },
   {
+    id: 13,
     firstName: "Megan",
     lastName: "Green",
     city: "San Francisco",
     degree: "MD",
     specialties: specialties.slice(...randomSpecialty()),
     yearsOfExperience: 14,
-    phoneNumber: 5559873456,
+    phoneNumber: "5559873456",
+    imageUrl:
+      "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
   },
   {
+    id: 14,
     firstName: "Joshua",
     lastName: "Walker",
     city: "Columbus",
     degree: "PhD",
     specialties: specialties.slice(...randomSpecialty()),
     yearsOfExperience: 9,
-    phoneNumber: 5556781234,
+    phoneNumber: "5556781234",
+    imageUrl:
+      "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
   },
   {
+    id: 15,
     firstName: "Amanda",
     lastName: "Hall",
     city: "Fort Worth",
     degree: "MSW",
     specialties: specialties.slice(...randomSpecialty()),
     yearsOfExperience: 3,
-    phoneNumber: 5559872345,
+    phoneNumber: "5559872345",
+    imageUrl:
+      "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
   },
 ];
 

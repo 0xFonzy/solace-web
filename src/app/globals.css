@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .glass {
+    @apply bg-white/70 dark:bg-neutral-800/70 backdrop-blur-md border border-white/20 dark:border-neutral-700/30;
+  }
+  .glass-card {
+    @apply glass rounded-lg shadow-lg hover:shadow-xl transition-all duration-300;
+  }
+  .glass-button {
+    @apply glass rounded-md px-4 py-2 transition-all duration-300 hover:bg-white/90 dark:hover:bg-neutral-700/90;
+  }
+  .primary-button {
+    @apply bg-primary-500 hover:bg-primary-600 text-white font-medium rounded-md px-4 py-2 transition-all duration-300;
+  }
+  .secondary-button {
+    @apply bg-secondary-500 hover:bg-secondary-600 text-white font-medium rounded-md px-4 py-2 transition-all duration-300;
+  }
+  .outline-button {
+    @apply border border-primary-500 text-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/30 font-medium rounded-md px-4 py-2 transition-all duration-300;
+  }
+  .container-custom {
+    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-neutral-800;
+  }
+  .input-field {
+    @apply glass w-full px-4 py-2 rounded-md focus-ring;
+  }
+}
