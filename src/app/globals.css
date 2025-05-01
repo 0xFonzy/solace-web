@@ -30,4 +30,12 @@
   .input-field {
     @apply glass w-full px-4 py-2 rounded-md focus-ring;
   }
+  .hide-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    &::-webkit-scrollbar {
+      /* Chrome, Safari and Opera */
+      display: none;
+    }
+  }
 }
