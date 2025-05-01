@@ -11,9 +11,7 @@ export type Advocate = {
 };
 
 export type AdvocateSearchFilter = {
-  name: string;
   city: string;
-  degree: string;
   specialty: string;
 };
 
