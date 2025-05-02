@@ -6,7 +6,6 @@ import { AdvocateSearchFilter } from "../types/advocate";
  * @returns Formatted query string starting with '?' if there are parameters, empty string if no valid parameters
  */
 export function formatQueryString(
-  searchTerm: string,
   filters: Partial<AdvocateSearchFilter>
 ): string {
   const validParams = Object.entries(filters)
@@ -16,7 +15,5 @@ export function formatQueryString(
         `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
     );
 
-  return validParams.length > 0
-    ? `?term=${searchTerm}&${validParams.join("&")}`
-    : `?term=${searchTerm}`;
+  return validParams.length > 0 ? `?${validParams.join("&")}` : "";
 }

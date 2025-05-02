@@ -4,13 +4,20 @@ export type Advocate = {
   lastName: string;
   city: string;
   degree: string;
-  specialties: string[];
+  specialties: Specialty[];
   yearsOfExperience: number;
   phoneNumber: string;
   imageUrl: string;
+  gender: string;
+};
+
+export type Specialty = {
+  value: string;
+  label: string;
 };
 
 export type AdvocateSearchFilter = {
+  name: string;
   city: string;
   specialty: string;
 };

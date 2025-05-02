@@ -4,10 +4,10 @@
 import { useMemo } from "react";
 import useSWR from "swr";
 import { addToast } from "@heroui/react";
+import axiosInstance from "./lib/axios";
 
 // Internal types
 import { Advocate, AdvocateSearchFilter } from "./types/advocate";
-import { SearchFilterOptions } from "./types/search";
 
 // Internal components
 import AdvocateCard from "./components/AdvocateCard";
@@ -16,25 +16,19 @@ import SkeletonCard from "./components/SkeletonCard";
 
 // Internal utilities
 import { formatQueryString } from "./lib/query";
+import { FilterResponse } from "./types/filter";
 
 const SKELETON_CARDS_COUNT = 8;
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+const fetcher = (url: string) => axiosInstance.get(url).then((res) => res.data);
 
 export default function Home() {
   const {
     data: advocates,
     isLoading: advocatesLoading,
     mutate,
-  } = useSWR<{
-    data: Advocate[];
-  }>("/api/advocates", fetcher);
-  console.log("advocates loading", advocatesLoading);
-
-  const { data: searchFilterOptions } = useSWR<SearchFilterOptions>(
-    "/api/filters",
-    fetcher
-  );
+  } = useSWR<Advocate[]>("/advocates", fetcher);
+  const { data: filters } = useSWR<FilterResponse>("/filters", fetcher);
 
   const skeletonCards = useMemo(
     () =>
@@ -44,18 +38,15 @@ export default function Home() {
     []
   );
 
-  const handleSearch = async (
-    searchTerm: string,
-    filters: AdvocateSearchFilter
-  ) => {
+  const handleSearch = async (filters: AdvocateSearchFilter) => {
     mutate(
       async () => {
         try {
-          const queryString = formatQueryString(searchTerm, filters);
-          const newAdvocates = await fetch(`/api/advocates${queryString}`);
-          const newAdvocatesData = await newAdvocates.json();
-          const { data } = newAdvocatesData;
-          return { data: data as Advocate[] };
+          const queryString = formatQueryString(filters);
+          const { data: advocatesData } = await axiosInstance.get<Advocate[]>(
+            `/advocates${queryString}`
+          );
+          return advocatesData;
         } catch (error) {
           addToast({
             title: "Search Error",
@@ -66,7 +57,7 @@ export default function Home() {
         }
       },
       {
-        optimisticData: { data: [] },
+        optimisticData: [],
         rollbackOnError: true,
         populateCache: true,
         revalidate: false,
@@ -98,15 +89,15 @@ export default function Home() {
         </div>
 
         <SearchBar
-          specialties={searchFilterOptions?.specialties || []}
-          cities={searchFilterOptions?.cities || []}
+          specialties={filters?.specialties || []}
+          cities={filters?.cities || []}
           onSearch={handleSearch}
         />
         <div className="mt-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {advocatesLoading
               ? skeletonCards
-              : advocates?.data.map((advocate) => (
+              : advocates?.map((advocate) => (
                   <AdvocateCard key={advocate.id} advocate={advocate} />
                 ))}
           </div>
