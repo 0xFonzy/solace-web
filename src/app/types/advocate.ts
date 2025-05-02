@@ -2,13 +2,18 @@ export type Advocate = {
   id: number;
   firstName: string;
   lastName: string;
-  city: string;
+  city: City;
   degree: string;
   specialties: Specialty[];
   yearsOfExperience: number;
   phoneNumber: string;
   imageUrl: string;
   gender: string;
+};
+
+export type City = {
+  value: string;
+  label: string;
 };
 
 export type Specialty = {

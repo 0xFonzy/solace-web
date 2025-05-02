@@ -29,7 +29,7 @@ export default function AdvocateCard({ advocate }: { advocate: Advocate }) {
             {advocate.firstName} {advocate.lastName} &nbsp;
           </p>
           <p className="text-sm text-gray-500">
-            {advocate.degree}, {advocate.city}
+            {advocate.degree}, {advocate.city.label}
           </p>
         </div>
         <Carousel scrollSpeed={1}>
