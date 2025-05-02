@@ -4,11 +4,12 @@ import { AdvocateSearchFilter } from "../types/advocate";
 import { motion } from "framer-motion";
 import { debounce } from "lodash";
 import { Select, SelectItem } from "@heroui/react";
+import { FilterItem } from "../types/filter";
 
 type SearchBarProps = {
-  specialties: string[];
-  cities: string[];
-  onSearch: (searchTerm: string, filters: AdvocateSearchFilter) => void;
+  specialties: FilterItem[];
+  cities: FilterItem[];
+  onSearch: (filters: AdvocateSearchFilter) => void;
 };
 
 export default function SearchBar({
@@ -16,25 +17,28 @@ export default function SearchBar({
   cities,
   onSearch,
 }: SearchBarProps) {
-  const [query, setQuery] = useState("");
   const [showFilters, setShowFilters] = useState(false);
   const [filters, setFilters] = useState<AdvocateSearchFilter>({
+    name: "",
     city: "",
     specialty: "",
   });
 
   const debouncedSearch = useMemo(
     () =>
-      debounce((term: string, filters: AdvocateSearchFilter) => {
-        onSearch(term, filters);
+      debounce((filters: AdvocateSearchFilter) => {
+        onSearch(filters);
       }, 500),
     [onSearch]
   );
 
-  const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    setQuery(value);
-    debouncedSearch(value, filters);
+    setFilters((prev) => {
+      const newFilters = { ...prev, name: value };
+      debouncedSearch(newFilters);
+      return newFilters;
+    });
   };
 
   const handleToggleFilters = () => {
@@ -45,7 +49,7 @@ export default function SearchBar({
     const { name, value } = e.target;
     setFilters((prev) => {
       const newFilters = { ...prev, [name]: value };
-      debouncedSearch(query, newFilters);
+      debouncedSearch(newFilters);
       return newFilters;
     });
   };
@@ -57,8 +61,8 @@ export default function SearchBar({
           <Search size={20} className="text-neutral-500" />
           <input
             type="text"
-            value={query}
-            onChange={handleQueryChange}
+            value={filters.name}
+            onChange={handleInputChange}
             placeholder="Search for health advocates by name, specialty, or city..."
             className="w-full py-4 px-3 bg-transparent border-none outline-none"
             aria-label="Search for health advocates"
@@ -98,7 +102,9 @@ export default function SearchBar({
                   className="input-field"
                 >
                   {specialties.map((specialty) => (
-                    <SelectItem key={specialty}>{specialty}</SelectItem>
+                    <SelectItem key={specialty.value}>
+                      {specialty.label}
+                    </SelectItem>
                   ))}
                 </Select>
               </div>
@@ -114,7 +120,7 @@ export default function SearchBar({
                   className="input-field"
                 >
                   {cities.map((city) => (
-                    <SelectItem key={city}>{city}</SelectItem>
+                    <SelectItem key={city.value}>{city.label}</SelectItem>
                   ))}
                 </Select>
               </div>
