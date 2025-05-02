@@ -19,7 +19,7 @@ export type Specialty = {
 export type AdvocateSearchFilter = {
   name: string;
   city: string;
-  specialty: string;
+  specialties: string;
 };
 
 export type AdvocateSearchRequest = {

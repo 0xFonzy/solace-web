@@ -4,6 +4,12 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+Declare environment variables
+
+```bash
+NEXT_PUBLIC_API_BASE_URL=https://api.solace.alfonsoaranzazu.com
+```
+
 Install dependencies
 
 ```bash
