@@ -3,7 +3,7 @@
 // External dependencies
 import { useMemo } from "react";
 import useSWR from "swr";
-import { addToast } from "@heroui/react";
+import { addToast, SelectItem, Select } from "@heroui/react";
 import axiosInstance from "./lib/axios";
 
 // Internal types
@@ -93,6 +93,15 @@ export default function Home() {
           cities={filters?.cities || []}
           onSearch={handleSearch}
         />
+        <div className="mt-16 flex justify-between text-neutral-400">
+          <p>Showing {advocates?.length} advocates</p>
+          <div className="flex items-center gap-2 w-full max-w-xs">
+            <p className="w-24">Sort by:</p>
+            <Select placeholder="Highest Rated" disabled>
+              <SelectItem>Highest Rated</SelectItem>
+            </Select>
+          </div>
+        </div>
         <div className="mt-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {advocatesLoading
@@ -102,6 +111,11 @@ export default function Home() {
                 ))}
           </div>
         </div>
+        {!advocatesLoading && advocates?.length === 0 && (
+          <div className="mt-8 text-center text-neutral-400 p-4">
+            No advocates found, try another search.
+          </div>
+        )}
       </div>
     </div>
   );

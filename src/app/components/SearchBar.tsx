@@ -21,7 +21,7 @@ export default function SearchBar({
   const [filters, setFilters] = useState<AdvocateSearchFilter>({
     name: "",
     city: "",
-    specialty: "",
+    specialties: "",
   });
 
   const debouncedSearch = useMemo(
@@ -92,12 +92,12 @@ export default function SearchBar({
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div className="w-full sm:w-[calc(50%-0.5rem)]">
                 <Select
-                  id="specialty"
-                  name="specialty"
+                  id="specialties"
+                  name="specialties"
                   label="Specialty"
                   placeholder="Select a specialty"
                   size="sm"
-                  value={filters.specialty}
+                  value={filters.specialties}
                   onChange={handleFilterChange}
                   className="input-field"
                 >
